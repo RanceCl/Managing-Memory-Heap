@@ -1,0 +1,35 @@
+lab4TestPlan
+Roderick "Rance" White
+roderiw
+ECE 2230 Fall 2020
+MP4
+
+
+Firstly, the memory allocation function was added. I had next made the free function, with the code searching for the address where the return pointer had originally been placed. I also finished the print function, temporarily adding a while loop to start the printing at the dummy pointer. This was purely to make it easier to check for errors in the list and was intended to be removed later.
+
+I added two more unit drivers to the lab4 document prior to completing the coalescing and best fit parts of the functions to ensure I was on the right track. The first new unit driver, u2, was mostly to test the unusual sizes, such as larger than one page or unit sizes that were not divisible by a unit size. It was also set up such that the final memory, during a best fit test, would need to skip the first viable memory and allocate memory from a second block already present.
+
+Unit driver u3, was mostly a replica of the test provided in the MP4 instructions, freeing the 1st and 3rd blocks of three allocated memories and printing the list to verify the hole between them. 
+
+During testing with the unit drivers, I discovered that the memory was not intended to be returned to its original block and this was changed. Later on, it was discovered that there was an error where, if all of a block was allocated, it would cause the block to point to null in the list and cause an error. This was fixed by making the free list no longer point to the block at all, something I originally wasn't aware I needed to do.
+
+Following this, another error was discovered where the end address of a block of memory would overlap with the beginning address of the memory block allocated afterwards. This was solved by subtracting 1 from certain points in the code where the size units were used to manipulate the list, accounting for the header.
+
+The coalescing free function was added next, with a loop that would check if the return pointer's address was between two memory blocks that were next to each other, putting the return pointer's memory back into the free list when it reached such a location. Following the loop, the previous and following blocks would be compared with the freed block to see if they were directly next to it, with them being merged if they were indeed next to each other. This was tested and no errors were noticed.
+
+The best fit was implemented using the same loop as the first fit, though not breaking the loop and checking for if a smaller memory block would be viable. This was tested and an error was fixed where the code wouldn't find the right memory if the rover started at the dummy pointer due to the size of the dummy pointer being 0. No further errors were noticed.
+
+The loop in the print function to start printing at the dummy pointer was removed.
+
+
+
+
+
+
+
+
+
+
+
+
+

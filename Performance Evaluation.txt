@@ -1,0 +1,14 @@
+lab4TestPlan
+Roderick "Rance" White
+roderiw
+ECE 2230 Fall 2020
+MP4
+
+
+I chose to keep the current mem_chunk_t structure as it was provided due to concern with my ability to change other provided code. Following some tests where I briefly had the original size of memory blocks present, this worry faded and I become more confident, though I chose to keep the memory chunk as it was since I found that I was able to implement the functions necessary without any other information. Admittedly though, this might have been an inefficient way to code it, as including information such as the address of blocks in the structure may have allowed me to free it without large code.
+
+First-fit's advantage seems to be that it works faster than the best-fit, though best-fit can reduce the waste of memory in the free list and aids with fragmentation errors. Coalescing seemed to cause the frequency of fragmentation problems to decrease, though the time that the program would take to perform would noticeably increase as well.
+
+The code showed no errors for the special case in which allocation requests were the same in size. 
+
+The default malloc (-d) ran much faster than the code I created.
